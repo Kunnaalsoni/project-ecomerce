@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title %} Address {% endblock %} {% block bodyblock %}
+<div class="container">
+    <H1>Cart for {{ user.get_username }}</H1>
+    {% for x in data %}
+    <h1>{{ x.item.name }}</h1>
+    <p>{{ x.item.price }}</p>
+    <p>test</p>
+    {% endfor %}
+    <section>
+        <form method="POST">
+            {% csrf_token %}
+            <label>
+        Address Line
+        <input type="text" name = 'address-line'>
+        </label>
+            <label>
+            Mobile Number
+            <input type="number" name = 'mobile-number'>
+        </label>
+            <input type="submit" value="Proceed to checkout">
+        </form>
+    </section>
+</div>
+{% endblock %}

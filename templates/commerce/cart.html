@@ -1,0 +1,13 @@
+<html>
+
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" value="{{ user.get_username }}" name="username">
+        <input type="text" value="{{ object.name }}" name="slug">
+        <input type="number" name="quantity">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
