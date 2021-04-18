@@ -1,4 +1,8 @@
-{% extends 'base.html' %} {% block title %} {{ object.name }} {% endblock %} {% block bodyblock %}
+{% extends 'base.html' %}{% load static %} {% load ratings %} {% block head_section %}
+<link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+</head>
+{% endblock %} {% block bodyblock %}
 <section class="text-gray-600 body-font overflow-hidden">
     <div class="container px-5 py-24 mx-auto">
         <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -53,6 +57,7 @@
                 </div>
             </div>
         </div>
+        {% ratings object %}
     </div>
-</section>
-{% endblock %}
+
+</section> {% endblock %}

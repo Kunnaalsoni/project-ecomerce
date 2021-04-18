@@ -1,5 +1,5 @@
 from django.urls import path
-from commerce.views import ProductListView, ProductDetailView, UserCreateView, login, logout_view, address
+from commerce.views import ProductListView, ProductDetailView, UserCreateView, login, logout_view, address, payment
 app_name = 'commerce'
 
 urlpatterns = [
@@ -8,5 +8,6 @@ urlpatterns = [
     path('signup/', UserCreateView.as_view(), name = 'signup'),
     path('login/', login, name = 'login'),
     path('logout/', logout_view, name= 'logout'),
-    path('address/', address, name = 'address')
+    path('address/', address, name = 'address'),
+    path('payment/', payment, name = 'payment'),
 ]
