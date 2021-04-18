@@ -31,7 +31,6 @@ class Address(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     address_line = models.TextField()
     mobile_number = models.IntegerField()
-
     def __str__(self):
         return self.user.username
 

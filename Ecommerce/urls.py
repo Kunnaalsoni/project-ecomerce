@@ -19,12 +19,17 @@ from django.views.generic import TemplateView
 from commerce import urls
 from . import settings
 from django.conf.urls.static import static
+from commerce.views import CategoryView, CategoryList, search
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name = 'index.html')),
     path('about/', TemplateView.as_view(template_name = 'aboutus.html')),
-    path('products/', include('commerce.urls'))
+    path('products/', include('commerce.urls')),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('categories/', CategoryView.as_view()),
+    path('categories/<url>/', CategoryList.as_view()),
+    path('search', search, name = 'searchposts')
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

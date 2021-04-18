@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %} Select payment method {% endblock %} {% block bodyblock %}
+<section class="container">
+    <h1>Select your payment method:</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="radio" value="COD" name="payment-method">
+        <label>Cash on Delivery</label><br>
+        <input type="radio" value="Debit Card/ Credit Card" name="payment-method">
+        <label>Debit Card/ Credit Card</label><br>
+        <input type="radio" value="Online" name="payment-method">
+        <label>Khalti</label>
+        <input type="hidden" name="token" id="token">
+        <input type="submit" value="Complete Order" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+    </form>
+</section>
+{% endblock %}
