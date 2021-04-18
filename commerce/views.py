@@ -8,11 +8,12 @@ from commerce.forms import UserCreateForm
 from django.contrib.auth import authenticate, login as lg, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Cart, Address, OrderedDetails
+from .models import Cart, Address, OrderedDetails, Product
 from django.contrib.auth.models import User
 import datetime
 from django.core.mail import send_mail
 from . import emaildata
+from django.db.models import Q
 # Create your views here.
 class ProductListView(ListView):
     template_name = 'commerce/productlist.html'
@@ -122,3 +123,24 @@ class CategoryList(ListView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+def search(request):
+    if request.method == 'GET':
+        query= request.GET.get('q')
+
+        submitbutton= request.GET.get('submit')
+
+        if query is not None:
+            lookups= Q(name__icontains=query) | Q(about__icontains=query)
+
+            results= Product.objects.filter(lookups).distinct()
+
+            context={'results': results,
+                     'submitbutton': submitbutton}
+
+            return render(request, 'commerce/search.html', context)
+
+        else:
+            return render(request, 'commerce/search.html')
+
+    else:
+        return render(request, 'commerce/search.html')
